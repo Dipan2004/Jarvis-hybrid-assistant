@@ -1,0 +1,29 @@
+# Virtual Environment
+venv/
+
+# Environment Configuration
+.env
+
+# Logs
+*.log
+
+# Python Cache
+__pycache__/
+*.pyc
+
+# Runtime Data
+audio/
+exports/
+data/
+conv.txt
+status.txt
+mode_toggle.txt
+retrain_model.txt
+assistant.log
+
+# Jupyter
+.ipynb_checkpoints/
+
+# System Files
+.DS_Store
+Thumbs.db

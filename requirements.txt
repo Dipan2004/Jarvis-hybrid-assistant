@@ -1,0 +1,34 @@
+# Core dependencies
+python-dotenv==1.0.0
+pygame==2.5.2
+taipy==3.0.0
+requests==2.31.0
+numpy==1.24.3
+
+# Speech Recognition (Free)
+SpeechRecognition==3.10.0
+pyaudio==0.2.14
+pyttsx3==2.90
+
+# Google APIs (Free tiers available)
+google-generativeai==0.3.0
+google-cloud-texttospeech==2.16.3
+
+# Machine Learning for offline training
+scikit-learn==1.3.0
+joblib==1.3.0
+
+# Audio processing
+rhasspy-silence==0.4.0
+
+# System integration
+psutil==5.9.5
+
+# Optional: For better offline TTS
+# piper-tts==1.2.0  # Uncomment if you want to use Piper TTS
+
+# Weather API (optional)
+# You can get free API key from OpenWeatherMap
+
+# Additional utilities
+pathlib2==2.3.7
