@@ -2,7 +2,7 @@
 
 A sophisticated AI assistant that seamlessly operates in both online and offline modes, featuring voice interaction, web interface, and intelligent command processing.
 
-## ✨ Features
+##  Features
 
 ### 🌐 Hybrid Intelligence
 - **Online Mode**: Powered by Google's Gemini AI for advanced conversations
