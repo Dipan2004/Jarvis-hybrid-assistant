@@ -1,6 +1,4 @@
-"""
-Enhanced Taipy display with online/offline mode toggle and advanced features
-"""
+
 
 import time
 import json
