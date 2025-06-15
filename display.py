@@ -1,4 +1,6 @@
-
+"""
+Enhanced Taipy display with sleek black background, white text, and red buttons
+"""
 
 import time
 import json
@@ -150,12 +152,12 @@ def style_conv(state: State, idx: int, row: int) -> str:
     except (IndexError, KeyError):
         return None
 
-# Enhanced page layout with more features
+# Enhanced page layout with black theme
 page = """
 <|layout|columns=350px 1|
 <|part|render=True|class_name=sidebar|
 
-# 🤖 **JARVIS**{: .color-primary} Hybrid # {: .logo-text}
+# 🤖 **JARVIS**{: .color-primary} Assistant # {: .logo-text}
 
 ## Mode Control
 <|part|render=True|class_name=mode-section|
@@ -173,9 +175,9 @@ page = """
 
 ## Controls
 <|part|render=True|class_name=controls-section|
-<|New Conversation|button|class_name=fullwidth plain|on_action=clear_conversation|>
-<|Export History|button|class_name=fullwidth plain|on_action=export_conversation|>
-<|Retrain Model|button|class_name=fullwidth plain|on_action=retrain_model|>
+<|New Conversation|button|class_name=fullwidth control-btn|on_action=clear_conversation|>
+<|Export History|button|class_name=fullwidth control-btn|on_action=export_conversation|>
+<|Retrain Model|button|class_name=fullwidth control-btn|on_action=retrain_model|>
 |>
 
 ## Status
@@ -191,137 +193,198 @@ page = """
 |>
 """
 
-# Enhanced CSS for the new interface
+# Sleek black theme CSS
 enhanced_css = """
-body {
-    overflow: hidden;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* Global Dark Theme */
+* {
+    box-sizing: border-box;
 }
 
+body {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* Sidebar Styling */
 .sidebar {
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-    color: white;
-    padding: 20px;
+    background: linear-gradient(145deg, #1a1a1a, #0d0d0d) !important;
+    color: #ffffff !important;
+    padding: 25px;
     height: 100vh;
     overflow-y: auto;
+    border-right: 2px solid #333333;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .logo-text {
     text-align: center;
     margin-bottom: 30px;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
-    padding-bottom: 15px;
-}
-
-.mode-section, .stats-section, .controls-section, .status-section {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 20px;
-    backdrop-filter: blur(10px);
-}
-
-.mode-indicator {
-    font-size: 18px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #dc3545;
+    color: #ffffff !important;
+    font-size: 1.3em;
     font-weight: bold;
-    color: #4CAF50;
 }
 
+.logo-text .color-primary {
+    color: #dc3545 !important;
+}
+
+/* Section Styling */
+.mode-section, .stats-section, .controls-section, .status-section {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid #333333;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 25px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.mode-section:hover, .stats-section:hover, .controls-section:hover, .status-section:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: #dc3545;
+}
+
+/* Mode Indicator */
+.mode-indicator {
+    font-size: 18px !important;
+    font-weight: bold !important;
+    color: #00ff41 !important;
+    text-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+}
+
+/* Toggle Mode Button */
 .mode-toggle {
-    background: linear-gradient(45deg, #FF6B6B, #4ECDC4) !important;
-    color: white !important;
+    background: linear-gradient(135deg, #dc3545, #b02a37) !important;
+    color: #ffffff !important;
+    font-weight: bold !important;
+    font-size: 16px !important;
     border: none !important;
+    border-radius: 8px !important;
+    padding: 12px 20px !important;
     transition: all 0.3s ease !important;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3) !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .mode-toggle:hover {
+    background: linear-gradient(135deg, #e74c3c, #c0392b) !important;
     transform: translateY(-2px) !important;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3) !important;
+    box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4) !important;
 }
 
-.stats-section h3 {
-    margin-top: 0;
+.mode-toggle:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 10px rgba(220, 53, 69, 0.3) !important;
 }
 
-.controls-section button {
-    margin-bottom: 10px !important;
-    background: rgba(255, 255, 255, 0.2) !important;
-    color: white !important;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+/* Control Buttons */
+.control-btn {
+    background: linear-gradient(135deg, #dc3545, #b02a37) !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 10px 16px !important;
+    margin-bottom: 12px !important;
     transition: all 0.3s ease !important;
+    box-shadow: 0 3px 10px rgba(220, 53, 69, 0.2) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.controls-section button:hover {
-    background: rgba(255, 255, 255, 0.3) !important;
+.control-btn:hover {
+    background: linear-gradient(135deg, #e74c3c, #c0392b) !important;
     transform: translateX(5px) !important;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3) !important;
 }
 
+.control-btn:active {
+    transform: translateX(2px) !important;
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.2) !important;
+}
+
+/* Status Text */
 .status-text {
-    font-weight: bold;
-    color: #FFD700;
+    font-weight: bold !important;
+    color: #00ff41 !important;
+    font-size: 16px !important;
+    text-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
 }
 
+/* Chat Area */
 .chat-area {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    padding: 20px;
+    background: #000000 !important;
+    padding: 25px;
     height: 100vh;
     overflow-y: auto;
+    border-left: 1px solid #333333;
 }
 
+/* Message Styling */
 .gpt_message td {
-    margin-left: 30px;
-    margin-bottom: 20px;
-    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 15px;
+    margin-top: 15px;
     position: relative;
     display: inline-block;
-    padding: 20px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: 20px 20px 20px 5px;
+    padding: 18px 22px;
+    background: linear-gradient(135deg, #2c2c2c, #1a1a1a) !important;
+    border: 1px solid #404040;
+    border-radius: 18px 18px 18px 4px;
     max-width: 80%;
-    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    font-size: large;
-    color: white;
-    animation: slideInLeft 0.5s ease-out;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    font-size: 15px !important;
+    color: #ffffff !important;
+    animation: slideInLeft 0.4s ease-out;
+    line-height: 1.5;
 }
 
 .user_message td {
-    margin-right: 30px;
-    margin-bottom: 20px;
-    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 15px;
+    margin-top: 15px;
     position: relative;
     display: inline-block;
-    padding: 20px;
-    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
-    border-radius: 20px 20px 5px 20px;
+    padding: 18px 22px;
+    background: linear-gradient(135deg, #dc3545, #b02a37) !important;
+    border-radius: 18px 18px 4px 18px;
     max-width: 80%;
     float: right;
-    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    font-size: large;
-    color: white;
-    animation: slideInRight 0.5s ease-out;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+    font-size: 15px !important;
+    color: #ffffff !important;
+    animation: slideInRight 0.4s ease-out;
+    line-height: 1.5;
 }
 
 .system_message td {
-    margin: 10px auto;
+    margin: 15px auto;
     text-align: center;
-    padding: 10px 20px;
-    background: rgba(255, 193, 7, 0.2);
-    border-radius: 15px;
-    border: 1px solid rgba(255, 193, 7, 0.5);
-    color: #FFC107;
+    padding: 12px 24px;
+    background: rgba(255, 193, 7, 0.15) !important;
+    border: 1px solid rgba(255, 193, 7, 0.4);
+    border-radius: 20px;
+    color: #ffc107 !important;
     font-style: italic;
-    max-width: 60%;
-    animation: fadeIn 0.5s ease-out;
+    font-weight: 500;
+    max-width: 70%;
+    animation: fadeIn 0.4s ease-out;
+    box-shadow: 0 2px 10px rgba(255, 193, 7, 0.2);
 }
 
+/* Animations */
 @keyframes slideInLeft {
     from {
         opacity: 0;
-        transform: translateX(-50px);
+        transform: translateX(-40px);
     }
     to {
         opacity: 1;
@@ -332,7 +395,7 @@ body {
 @keyframes slideInRight {
     from {
         opacity: 0;
-        transform: translateX(50px);
+        transform: translateX(40px);
     }
     to {
         opacity: 1;
@@ -343,7 +406,7 @@ body {
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: scale(0.9);
+        transform: scale(0.95);
     }
     to {
         opacity: 1;
@@ -351,36 +414,97 @@ body {
     }
 }
 
-/* Scrollbar styling */
+/* Scrollbar Styling */
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
+    background: #1a1a1a;
+    border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
+    background: linear-gradient(135deg, #dc3545, #b02a37);
+    border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.5);
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
 }
 
-/* Responsive design */
+/* Table Styling */
+table {
+    background: transparent !important;
+    border: none !important;
+}
+
+table td, table th {
+    background: transparent !important;
+    border: none !important;
+    color: #ffffff !important;
+}
+
+/* Input and Select Styling */
+input, select, textarea {
+    background: #2c2c2c !important;
+    color: #ffffff !important;
+    border: 1px solid #404040 !important;
+    border-radius: 6px !important;
+    padding: 8px 12px !important;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.2) !important;
+    outline: none !important;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
     .sidebar {
         width: 100% !important;
         height: auto !important;
         position: relative !important;
+        border-right: none;
+        border-bottom: 2px solid #333333;
     }
     
     .chat-area {
         height: 60vh !important;
+        border-left: none;
+        border-top: 1px solid #333333;
     }
+    
+    .user_message td, .gpt_message td {
+        max-width: 90% !important;
+    }
+}
+
+/* Additional Enhancements */
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff !important;
+}
+
+.fullwidth {
+    width: 100% !important;
+}
+
+/* Loading Animation */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(220, 53, 69, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
+    }
+}
+
+.mode-toggle.active {
+    animation: pulse 2s infinite;
 }
 """
 
@@ -390,16 +514,17 @@ def save_enhanced_css():
     Path("enhanced_display.css").write_text(enhanced_css)
 
 
+# Ensure directories exist
 Path("data").mkdir(exist_ok=True)
 Path("exports").mkdir(exist_ok=True)
 
-
+# Create GUI instance
 gui = Gui(page, css_file="enhanced_display.css")
 
-
+# Save CSS file
 save_enhanced_css()
 
-
+# Start background thread for updates
 thread = Thread(target=client_handler, args=(gui, state_id_list))
 thread.daemon = True
 thread.start()
